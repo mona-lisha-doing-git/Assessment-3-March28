@@ -16,6 +16,7 @@ from selenium.webdriver import Chrome, ChromeOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
 
 o=ChromeOptions()
 o.add_experimental_option('detach', True)
@@ -29,6 +30,10 @@ driver.maximize_window()
 wait = WebDriverWait(driver, 15)
 
 # Clicking on the apple category product
+action = ActionChains(driver)
+ele = driver.find_element(By.XPATH, "//div[@class='featuredProducts_footerLeft__PmkNa']//span[text()='APPLE']")
+action.scroll_to_element(ele).perform()
+
 wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='featuredProducts_footerLeft__PmkNa']//span[text()='APPLE']"))).click()
 
 # Locating the delivery input field and enter the pincode
